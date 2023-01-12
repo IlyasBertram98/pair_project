@@ -14,8 +14,7 @@ class RegisterController {
       role,
     })
       .then((user) => {
-        const message = `successfully register the data`;
-        res.redirect(`/?success=${message}`);
+        res.redirect(`/login?success=register success`);
       })
       .catch((e) => {
         res.send(e);

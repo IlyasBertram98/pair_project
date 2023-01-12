@@ -18,15 +18,16 @@ class LoginController {
       },
     })
       .then((user) => {
-        if (!user) return res.redirect(`/?error=username is incorrect`);
+        if (!user) return res.redirect(`/login?error=username is incorrect`);
         const passwordMatched = comparePassword(password, user.password);
         const roleMatched = compareRole(role, user.role);
 
+        //auto set session if password and role matched
         if (passwordMatched && roleMatched) {
           setSession(req, user);
-          res.redirect(`/?success=login success`);
+          res.redirect(`/login?success=login success`);
         } else {
-          res.redirect(`/?error=password or role is incorrect`);
+          res.redirect(`/login?error=password or role is incorrect`);
         }
       })
       .catch((err) => {
