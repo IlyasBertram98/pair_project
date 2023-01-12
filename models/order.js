@@ -13,9 +13,6 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Order.belongsTo(models.User)
       Order.hasMany(models.FoodOrder)
-      Order.belongsToMany(models.Food, {
-        through: models.FoodOrder
-      })
     }
   }
   Order.init({

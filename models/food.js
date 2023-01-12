@@ -12,9 +12,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Food.hasMany(models.FoodOrder)
-      Food.belongsToMany(models.Order, {
-        through: models.FoodOrder
-      })
     }
   }
   Food.init({
