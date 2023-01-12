@@ -2,7 +2,9 @@ const { User } = require("../../models");
 
 class RegisterController {
   static getRegisterPage(req, res) {
-    res.render("registerAndLogin/register");
+    const { errorRegister } = req.query;
+    const arrErr = errorRegister ? errorRegister.split(",") : [];
+    res.render("registerAndLogin/register", { arrErr });
   }
 
   static register(req, res) {
@@ -18,7 +20,12 @@ class RegisterController {
         res.redirect(`/?success=${message}`);
       })
       .catch((e) => {
-        res.send(e);
+        if (e.name === "SequelizeValidationError") {
+          const message = e.errors.map((err) => err.message);
+          res.redirect(`/register?errorRegister=${message}`);
+        } else {
+          res.send(e);
+        }
       });
   }
 }

@@ -10,6 +10,13 @@
 <body>
 <div>
     <h1>Register Form</h1>
+    <% if(arrErr) { %>
+        <ul>
+            <% arrErr.forEach(function (err) { %>
+                <li style="color: red"><%= err %></li>
+            <% }) %>
+        </ul>
+    <% } %>
     <form action="/register" method="post">
         <label> username:
             <input type="text" name="username" placeholder="username">

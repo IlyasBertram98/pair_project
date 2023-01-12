@@ -8,4 +8,6 @@ userRouter.get("/foods/:id/add", UserController.getFoodPage);
 userRouter.post("/foods/:id/add", UserController.postFoodPage);
 userRouter.get("/history", UserController.getHistoryPage);
 
+userRouter.get("/logout", UserController.getLogoutPage);
+
 module.exports = userRouter;

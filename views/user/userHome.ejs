@@ -16,6 +16,28 @@
         Hallo <%= username %> selamat datang kembali mau pesan apa ni
     </h3>
     <div>
+        <form action="/user" method="get">
+            <select name="sort" id="sort">
+                <option value="h">harga tertinggi</option>
+                <option value="l">harga terendah</option>
+            </select>
+            <button type="submit">Sort</button>
+        </form>
+        <form action="/user" method="get">
+            cari makanan
+            <input type="text" name="search" id="search">
+            <button type="submit">Search</button>
+        </form>
+        <form action="/user" method="get">
+            harga tertinggi
+            <input type="number" name="max" id="search">
+            <button type="submit">Search</button>
+        </form>
+        <form action="/user" method="get">
+            harga terendah
+            <input type="number" name="min" id="search">
+            <button type="submit">Search</button>
+        </form>
         <table border="2">
             <tr>
                 <th>Nama Makanan</th>

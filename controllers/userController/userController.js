@@ -1,12 +1,21 @@
 const { Food, Order, User, FoodOrder } = require("../../models");
 const convertToRupiah = require("../../helper/convertToRupiah");
 const dateFormater = require("../../helper/dateFormatter");
+const { Op } = require("sequelize");
 
 class UserController {
   static getUserPage(req, res) {
     const { user } = req.session;
+    const { sort, search, min, max } = req.query;
     if (!user) return res.redirect("/");
-    Food.findAll().then((foods) => {
+    const options = {};
+    if (sort === "l") options.order = [["price", "ASC"]];
+    if (sort === "h") options.order = [["price", "DESC"]];
+    if (search) options.where = { name: { [Op.iLike]: `%${search}%` } };
+    if (min) options.where = { price: { [Op.gte]: min } };
+    if (max) options.where = { price: { [Op.lte]: max } };
+
+    Food.findAll(options).then((foods) => {
       res.render("user/userHome", { username: user.username, foods });
     });
   }
@@ -36,19 +45,21 @@ class UserController {
         });
       })
       .then((order) => {
-        FoodOrder.create({
+        return FoodOrder.create({
           FoodId: req.session.user.cart[0].id,
           OrderId: order.id,
-        }).then(() => {
-          res.redirect("/user/history");
         });
       })
-      .catch((err) => res.send(err));
+      .then(() => {
+        res.redirect("/user/history");
+      })
+      .catch((err) => res.redirect("/user/history?inierror"));
   }
 
   static getHistoryPage(req, res) {
     const { user } = req.session;
     if (!user) return res.redirect("/");
+    console.log(user.id, "ini user id");
     User.findByPk(user.id, {
       include: {
         model: Order,
@@ -65,6 +76,11 @@ class UserController {
         dateFormater,
       });
     });
+  }
+
+  static getLogoutPage(req, res) {
+    req.session.destroy();
+    res.redirect("/");
   }
 }
 
