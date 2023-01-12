@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Admin</h1>
+    <hr>
+    <a href="">Data User</a> |
+    <a href="">Data Orders</a> 
+    <hr>
+    <% if(success) {%>
+        <p style="color: red;">
+            <%= success %>
+        </p>
+    <%}%>
+    <table border="2px">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Picture</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% food.forEach((el, index) => {%>
+            <tr>
+                <td><%= ++index %></td>
+                <td>
+                    <img src="<%= el.imageUrl %>" alt="<%= el.imageUrl %>" width="30%"> 
+                    <p style="font-style: italic;">
+                        <%= el.name %>
+                    </p>
+                </td>
+                <td><%= el.getCurrency() %></td>
+                <td><%= el.description %></td>
+                <td>
+                    <a href="/admin/listFood/<%= el.id %>">delete</a> | 
+                    <a href="">edit</a>
+                </td>
+            </tr>
+            <%})%>
+
+        </tbody>
+    </table>
+</body>
+</html>

@@ -2,6 +2,9 @@
 const {
   Model
 } = require('sequelize');
+
+const formatIdCurrency = require("../helper/formatting/idrCurrency");
+
 module.exports = (sequelize, DataTypes) => {
   class Food extends Model {
     /**
@@ -12,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Food.hasMany(models.FoodOrder)
+    }
+
+    getCurrency() {
+      return formatIdCurrency(this.price)
     }
   }
   Food.init({
