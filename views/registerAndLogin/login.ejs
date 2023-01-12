@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <h1>Login Form</h1>
+    <% if(success || error) { %>
+        <div style="color: blue;">
+            <p><%= success %> <%= error %></p>
+        </div>
+    <% } %>
+    <form action="/" method="post">
+        <label for="username">Username: </label> <br>
+        <input type="text" name="username" id="username" placeholder="Enter your username"> <br> <br>
+        <label for="password">Password</label> <br>
+        <input type="password" name="password" id="password" placeholder="Enter your password"> <br> <br>
+        <!--        add option role-->
+        <label for="role">Role</label> <br>
+        <select name="role" id="role">
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+        </select> <br> <br>
+        <input type="submit" value="Login">
+    </form>
+    <div style="color: red">dont have an account? <a href="/register" class="href"> register here</a></div>
+
+</div>
+</body>
+</html>
