@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>History Pemesanan Kamu</title>
+</head>
+<body>
+<div>
+    <h1>
+        History Pemesanan Kamu
+    </h1>
+    <table border="2">
+        <tr>
+            <th>No</th>
+            <th>Makanan</th>
+            <th>Harga</th>
+            <th>Jumlah</th>
+            <th>Tanggal</th>
+        </tr>
+        <% data.Orders.map((el, index) => { %>
+        <tr>
+            <td><%= index + 1 %></td>
+            <td>
+                <% el.FoodOrders.map(element => { %>
+                    <p><%= element.Food.name %></p>
+                <% }) %>
+            </td>
+            <td><%= convertToRupiah(el.totalPrice) %></td>
+            <td><%= el.quantity %></td>
+            <td><%= dateFormater(el.createdAt) %></td>
+            <% }) %>
+    </table>
+</div>
+</body>
+</html>

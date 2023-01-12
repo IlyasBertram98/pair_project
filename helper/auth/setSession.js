@@ -4,6 +4,7 @@ function setSession(req, user) {
     id,
     username,
     role,
+    cart: [],
   };
 }
 

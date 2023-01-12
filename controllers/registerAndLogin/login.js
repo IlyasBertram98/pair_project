@@ -24,7 +24,7 @@ class LoginController {
 
         if (passwordMatched && roleMatched) {
           setSession(req, user);
-          res.redirect(`/?success=login success`);
+          res.redirect(`/user`);
         } else {
           res.redirect(`/?error=password or role is incorrect`);
         }
