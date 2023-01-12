@@ -1,8 +1,8 @@
-'use strict';
-const fs = require('fs')
+"use strict";
+const fs = require("fs");
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up (queryInterface, Sequelize) {
+  up(queryInterface, Sequelize) {
     /**
      * Add seed commands here.
      *
@@ -11,18 +11,20 @@ module.exports = {
      *   name: 'John Doe',
      *   isBetaMember: false
      * }], {});
-    */
-    const data  = JSON.parse(fs.readFileSync('./data/foods.json', 'utf-8')).map(el => {
-      el.createdAt = new Date()
-      el.updatedAt = new Date()
+     */
+    const data = JSON.parse(fs.readFileSync("./data/foods.json", "utf-8")).map(
+      (el) => {
+        el.createdAt = new Date();
+        el.updatedAt = new Date();
 
-      return el
-    })
+        return el;
+      }
+    );
     // console.log(data);
-    return queryInterface.bulkInsert('Food', data, {})
+    return queryInterface.bulkInsert("Food", data, {});
   },
 
-  down (queryInterface, Sequelize) {
+  down(queryInterface, Sequelize) {
     /**
      * Add commands to revert seed here.
      *
@@ -30,6 +32,6 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
 
-    return queryInterface.bulkDelete('Food', null, {});
-  }
+    return queryInterface.bulkDelete("Food", null, {});
+  },
 };
