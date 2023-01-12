@@ -1,12 +1,11 @@
 const express = require("express");
 const app = express();
-const port = 3000;
 const session = require("express-session");
 
 const indexRouter = require("./routes/index");
+const port = 3000;
 
 app.use(express.urlencoded({ extended: true }));
-app.use(indexRouter);
 app.use(
   session({
     secret: "keyboard cat",
@@ -15,6 +14,7 @@ app.use(
     cookie: { secure: false },
   })
 );
+app.use(indexRouter);
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {

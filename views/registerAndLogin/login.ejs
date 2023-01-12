@@ -10,9 +10,9 @@
 <body>
 <div>
     <h1>Login Form</h1>
-    <% if(success) { %>
+    <% if(success || error) { %>
         <div style="color: blue;">
-            <p><%= success %></p>
+            <p><%= success %> <%= error %></p>
         </div>
     <% } %>
     <form action="/" method="post">
