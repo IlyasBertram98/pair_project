@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Your Profiles</h1>
+    <hr>
+    <form action="/user/profile/edit" method="post">
+        <p>
+            Name: <br>
+            <input type="text" name="name" value="<%= profile.name %>">
+        </p>
+        <p>
+            Address: <br>
+            <input type="text" name="address" value="<%= profile.address %>">
+        </p>
+        <p>
+            Date Of Birth: <br>
+            <input type="date" name="dateOfBirth" value="<%= profile.dateFormatForEdit %>">
+        </p>
+        <p>
+            <input type="submit" value="Edit">
+        </p>
+    </form>
+</body>
+</html>

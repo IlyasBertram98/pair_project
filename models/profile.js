@@ -2,6 +2,8 @@
 const {
   Model
 } = require('sequelize');
+const dateFormat = require('../helper/formatting/dateFormatID');
+const dateFormatForEdit = require('../helper/formatting/formatingDateForInput');
 module.exports = (sequelize, DataTypes) => {
   class Profile extends Model {
     /**
@@ -13,6 +15,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Profile.belongsTo(models.User)
     }
+
+    dateFormat(){
+      return dateFormat(this.dateOfBirth)
+    }
+
+    get dateFormatForEdit() {
+      return dateFormatForEdit(this.dateOfBirth)
+    }
+
   }
   Profile.init({
     name: DataTypes.STRING,

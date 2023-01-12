@@ -16,7 +16,6 @@ class AdminController {
             })
     }
 
-
     static destroy(req, res) {
         const { id } = req.params
 
