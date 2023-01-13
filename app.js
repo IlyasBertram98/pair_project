@@ -17,6 +17,25 @@ app.use(
 app.use(indexRouter);
 app.set("view engine", "ejs");
 
+const { User, Order, FoodOrder, Food } = require("./models");
+
+app.get("/test", (req, res) => {
+  //query from User to FoodOrder
+  User.findAll({
+    include: {
+      model: Order,
+      include: {
+        model: FoodOrder,
+        include: {
+          model: Food,
+        },
+      },
+    },
+  }).then((data) => {
+    res.send(data);
+  });
+});
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });

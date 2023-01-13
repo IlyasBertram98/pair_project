@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <div>
+        <%- include('../partials/navbar') %>
+    </div>
+    <h3>
+        Hallo <%= username %> selamat datang kembali mau pesan apa ni
+    </h3>
+    <div>
+        <form action="/user" method="get">
+            <select name="sort" id="sort">
+                <option value="h">harga tertinggi</option>
+                <option value="l">harga terendah</option>
+            </select>
+            <button type="submit">Sort</button>
+        </form>
+        <form action="/user" method="get">
+            cari makanan
+            <input type="text" name="search" id="search">
+            <button type="submit">Search</button>
+        </form>
+        <form action="/user" method="get">
+            harga tertinggi
+            <input type="number" name="max" id="search">
+            <button type="submit">Search</button>
+        </form>
+        <form action="/user" method="get">
+            harga terendah
+            <input type="number" name="min" id="search">
+            <button type="submit">Search</button>
+        </form>
+        <table border="2">
+            <tr>
+                <th>Nama Makanan</th>
+                <th>Deskripsi</th>
+                <th>Harga</th>
+                <th>Gambar</th>
+                <th>Pesan</th>
+            </tr>
+            <% foods.map(el => { %>
+                <tr>
+                    <td><%= el.name %></td>
+                    <td><%= el.description %></td>
+                    <td><%= el.price %></td>
+                    <td><img src="<%= el.imageUrl %>" alt="image" height="100"></td>
+                    <td><a href="user/foods/<%= el.id %>/add">Tambahkan Pesanan</a></td>
+                </tr>
+            <% }) %>
+        </table>
+    </div>
+</div>
+</body>
+</html>

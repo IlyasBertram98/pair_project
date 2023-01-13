@@ -27,12 +27,17 @@ class AdminController {
                 return Food.destroy({ where: { id: id } })
             })
             .then(() => {
-                res.redirect(`/admin/listFood?success=${data.food.name}`)
+                res.redirect(`/admin?success=${data.food.name}`)
             })
             .catch(err => {
                 res.send(err)
             })
     }
+
+    static getLogoutPage(req, res) {
+        req.session.destroy();
+        res.redirect("/");
+      }
 
 }
 
